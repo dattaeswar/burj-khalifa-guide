@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Burj Khalifa Guide - An AI-powered architectural and construction encyclopedia answering questions about the world's tallest building.">
+  <meta name="theme-color" content="#0A1128">
+  <title>Burj Khalifa Guide | Construction Encyclopedia</title>
+  
+  <!-- Google Fonts: Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-left">
+        <div class="tower-icon-wrapper" aria-hidden="true">
+          <svg class="tower-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 2v20M8 22h8M9 6h6M8 11h8M7 16h10M12 2l-3 20M12 2l3 20" />
+          </svg>
+        </div>
+        <div class="header-titles">
+          <h1 class="header-title">Burj Khalifa Guide</h1>
+          <div class="header-subtitle-row">
+            <span class="status-indicator" id="status-indicator" title="Knowledge Base Connected"></span>
+            <span class="header-subtitle">Construction Encyclopedia &bull; DeepSeek</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="header-actions">
+        <button id="new-chat-btn" class="btn btn-secondary" title="Start a fresh conversation" aria-label="New chat">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+          <span>New Chat</span>
+        </button>
+        <button id="theme-toggle-btn" class="btn btn-icon" title="Toggle theme" aria-label="Toggle light/dark theme">
+          <svg class="theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+          <svg class="theme-icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Chat Window -->
+    <main class="chat-main" id="chat-container">
+      <div class="messages-viewport" id="messages-list">
+        
+        <!-- Empty State Hero -->
+        <div class="empty-state" id="empty-state">
+          <div class="hero-spire-badge">
+            <div class="spire-ring"></div>
+            <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2L9 22h6L12 2zM12 2v20M7 22h10M8 14h8M9 9h6"/>
+            </svg>
+          </div>
+          <h2 class="hero-title">Discover the Engineering Marvel</h2>
+          <p class="hero-description">
+            Explore the construction, 6-year climb, architectural secrets, workforce history, and opening of the world's tallest tower (828m). Grounded strictly in the official construction records.
+          </p>
+
+          <div class="suggestions-section">
+            <span class="suggestions-label">Explore Suggested Questions:</span>
+            <div class="suggestions-grid">
+              <button class="suggestion-chip" data-question="When did construction start?">
+                <span class="chip-icon">📅</span>
+                <span class="chip-text">When did construction start?</span>
+              </button>
+              <button class="suggestion-chip" data-question="Why was it built?">
+                <span class="chip-icon">🏗️</span>
+                <span class="chip-text">Why was it built?</span>
+              </button>
+              <button class="suggestion-chip" data-question="Why was it renamed?">
+                <span class="chip-icon">🏷️</span>
+                <span class="chip-text">Why was it renamed?</span>
+              </button>
+              <button class="suggestion-chip" data-question="Who were the key figures?">
+                <span class="chip-icon">👥</span>
+                <span class="chip-text">Who were the key figures?</span>
+              </button>
+              <button class="suggestion-chip" data-question="What happened during the 2006 labour unrest?">
+                <span class="chip-icon">⚖️</span>
+                <span class="chip-text">What happened during the 2006 labour unrest?</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Input Footer -->
+    <footer class="app-footer">
+      <form class="chat-form" id="chat-form" onsubmit="return false;">
+        <div class="input-card">
+          <textarea
+            id="user-input"
+            rows="1"
+            maxlength="1000"
+            placeholder="Ask about the Burj Khalifa's construction, engineering, or history..."
+            aria-label="Ask about Burj Khalifa"
+          ></textarea>
+          <div class="input-actions">
+            <span class="char-counter" id="char-counter">0 / 1000</span>
+            <button type="submit" id="send-btn" class="btn btn-send" title="Send message (Enter)" aria-label="Send message" disabled>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </form>
+      <div class="footer-disclaimer">
+        <span>Grounded exclusively on <code>Burj_Khalifa_Encyclopedia.pdf</code> • Powered by DeepSeek</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
